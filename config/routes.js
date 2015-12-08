@@ -42,7 +42,7 @@ module.exports.routes = {
   'POST /note/create' :       'NoteController.create',
   'GET /note'         :       'NoteController.get',
   'PATCH /note/edit'  :       'NoteController.edit',
-  'DELETE /note'      :       'NoteController.delete'
+  'POST /note/delete' :       'NoteController.delete'
 
   /***************************************************************************
   *                                                                          *

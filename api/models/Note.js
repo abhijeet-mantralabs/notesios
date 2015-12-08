@@ -36,7 +36,7 @@ module.exports = {
 	},
 
 	editNote: function(data, callback){
-		Note.update({id: data.noteId},{title: data.title, description: data.description}).exec(function(err, resp){
+		Note.update({id: data.noteId},{title: data.noteTitle, description: data.noteDescription}).exec(function(err, resp){
 			if(err){
 				callback(err, null);
 			}else{

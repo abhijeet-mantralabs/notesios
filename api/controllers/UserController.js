@@ -17,7 +17,7 @@ module.exports = {
 					req.session.authenticated = true;
 
 					req.session.user = resp;
-					sails.log.debug("req.session.user---->>", req.session.user);
+					sails.log.debug("req session user- login>>>>>>",req.session.user);
 					res.json({status: 200, data: resp});
 				}
 			});

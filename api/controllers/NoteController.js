@@ -7,19 +7,19 @@
 
 module.exports = {
 	create: function(req, res){
-		if(!req.body || !req.body.title || !req.body.description || !req.body.date){
+		console.log(req.session);
+		if(!req.body || !req.body.title || !req.body.description){
 			res.status(400).json( {status: 400 , message: "some Fields missing" });
 		}else{
-			sails.log.debug("note session--->>", req.session.user);
 			if(!req.session.user){
-			   res.status(400).json( {status: 400 , message: "user not logged in " });
+			   res.status(401).json({status: 401 , message: "user not logged in " });
 			}else{
 				var data = {
 					title: req.body.title,
 					description: req.body.description,
 					username: req.session.user.username,
 					userId: req.session.user.id,
-					date : req.body.date
+					date : new Date()
 				}
 				Note.createNote(data, function(err, resp){
 					if(err){
@@ -68,7 +68,7 @@ module.exports = {
 
 	get: function(req, res){
 		if(!req.session.user){
-			res.status(401).json( {status: 401 , message: "please login  first" });
+			// res.status(401).json( {status: 401 , message: "please login  first" });
 		}else{
 			Note.fetch(req.session.user.id, function(err, resp){
 				if(err){
